@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import ChatList from './components/ChatList';
+import YeetbotChatList from './components/YeetbotChatList';
 import MessageArray from "./components/MessageArray";
 import './App.css';
 
@@ -64,6 +65,17 @@ const App = () => {
                   </div>
                 </div>
                 <div className="chat-list">
+                  <YeetbotChatList />
+                  <ChatList />
+                  <ChatList />
+                  <ChatList />
+                  <ChatList />
+                  <ChatList />
+                  <ChatList />
+                  <ChatList />
+                  <ChatList />
+                  <ChatList />
+                  <ChatList />
                   <ChatList />
                 </div>
               </div>

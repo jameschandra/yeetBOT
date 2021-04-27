@@ -1,9 +1,10 @@
 import React from 'react';
+import '../styles/messagenative.css';
 
 const MessageNative = ({ message }) => {
     return (
-        <div>
-            <p>{message}</p>
+        <div className="native-box">
+            <p className="native-message">{message}</p>
         </div>
     )
 }

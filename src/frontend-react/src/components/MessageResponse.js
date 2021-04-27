@@ -1,9 +1,10 @@
 import React from 'react';
+import '../styles/messageresponse.css';
 
 const MessageResponse = ({ message }) => {
     return (
-        <div>
-            <p>{message}</p>
+        <div className="response-box">
+            <p className="response-message">{message}</p>
         </div>
     )
 }

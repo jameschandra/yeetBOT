@@ -7,7 +7,9 @@ const MessageArray = ({ messages }) => {
         <div>
             { messages.map((message, index) => {
                 if (index % 2 === 0) {
-                    return <MessageNative message={message} key={index.toString()} />
+                    return (
+                        <MessageNative message={message} key={index.toString()} />
+                    )
                 } else {
                     return <MessageResponse message={message} key={index.toString()} />
                 }
