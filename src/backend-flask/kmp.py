@@ -45,9 +45,3 @@ def kmp(text,pattern,kmp_table):
         return i - j
     else: # no match
         return -1
-    
-
-kmp_table = []
-pattern = "abaaba"
-text = "bacbabaabaabcbca"
-print(kmp(text,pattern,kmp_table))
