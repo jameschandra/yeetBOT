@@ -20,8 +20,6 @@ def kmp_border_function(pattern,j):
         for l in range(len(prefix_array)):
             if prefix_array[l] == suffix_array[l]:
                 to_return = len(prefix_array[l])
-        print(prefix_array)
-        print(suffix_array)
         return to_return
 
 def make_kmp_table(kmp_table,pattern):
@@ -33,19 +31,21 @@ def kmp(text,pattern,kmp_table):
     i = 0
     j = 0
     # for i in range(len(text)):
-    while text[i] == pattern[j] and j < len(pattern) and i < len(text):
-        i += 1
-        j += 1
-    # mismatch or j = len(pattern) or i = len(text)
-    if text[i] != pattern[j]:
-        if j == 0:
+    while j < len(pattern) and i < len(text):
+        # mismatch or j = len(pattern) or i = len(text)
+        if text[i] == pattern[j]:
             i += 1
-        else:
-            j = kmp_table[j]
-    elif j == len(pattern): # matching
+            j += 1
+        elif text[i] != pattern[j]:
+            if j == 0:
+                i += 1
+            else:
+                j = kmp_table[j]
+    if j == len(pattern): # matching
         return i - j
     else: # no match
         return -1
+    
 
 kmp_table = []
 pattern = "abaaba"
