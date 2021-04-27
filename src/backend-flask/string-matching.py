@@ -12,6 +12,7 @@ def kmp_border_function(pattern,j):
         suffix_array = []
         prefix = ""
         suffix = ""
+        to_return = 0
         for i in range(k):
             prefix += pattern[i]
             prefix_array.append(prefix)
@@ -19,6 +20,10 @@ def kmp_border_function(pattern,j):
             suffix = pattern[j] + suffix
             suffix_array.append(suffix)
             print(suffix)
+        for l in range(len(prefix_array)):
+            if prefix_array[l] == suffix_array[l]:
+                to_return = len(prefix_array[l])
+        return to_return
 
 
 
@@ -31,4 +36,3 @@ def is_same(string1,string2):
 
 # for i in range(len(pattern)):
 #     kmp_table.append(kmp_border_function(pattern,i))
-kmp_border_function("Vaza",4)
