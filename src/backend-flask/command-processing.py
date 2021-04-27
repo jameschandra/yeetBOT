@@ -16,3 +16,16 @@ elif ("""ada ASSISTANT, BISA, APA"""):
     # menampilkan opsi help
 else:
     print("Maaf, pesan tidak dikenali")
+
+def findTask(kalimat):
+    if (findWord(kalimat, "tubes"):
+        return "Tubes"
+    elif (findWord(kalimat, "tucil")):
+        return "Tucil"
+    elif (findWord(kalimat, "kuis")):
+        return "Kuis"
+    elif (findWord(kalimat, "ujian")):
+        return "Ujian"
+    elif (findWord(kalimat, "praktikum")):
+        return "Praktikum"
+
