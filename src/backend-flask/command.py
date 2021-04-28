@@ -10,8 +10,8 @@ def findWord(teks, pattern):
         return True
 
 def findMatkul(text):
-    matkul = re.search('([a-zA-Z])+[0-9]+',text)
-    
+    matkul = re.search('([a-zA-Z])+[0-9][0-9][0-9][0-9]', text)
+
     return matkul
 
 def findTopik(text):
