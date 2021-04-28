@@ -13,4 +13,5 @@ def lev(typo, bener):
                 if(typo[i] != bener[j]):
                     c+=1
                 matriks[i][j] = min(a,b,c)
-    return matriks[len(typo)-1][len(bener)-1]
+    distance = matriks[len(typo)-1][len(bener)-1]
+    return distance / max(len(typo)-1, len(bener)-1)
