@@ -9,6 +9,12 @@ def findWord(teks, pattern):
     else:
         return True
 
+def findNumberAfterWord(text, word):
+    return re.findall(r'%s\s(\d+)' % word, text.lower())
+
+def findNumberBeforeWord(text, word):
+    return re.findall(r'(\d+)\s%s' % word, text.lower())
+
 def findMatkul(text):
     matkul = re.search('([a-zA-Z])+[0-9][0-9][0-9][0-9]', text)
 
