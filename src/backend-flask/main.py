@@ -2,7 +2,6 @@ from flask import Flask, request, jsonify
 from command import *
 from tanggal import *
 from database import *
-from Levenshtein import *
 import sqlite3
 import json
 
@@ -85,6 +84,28 @@ def chat_conditionals():
                 get_deadline = """SELECT * FROM tasks
                                   WHERE tanggal >= ? AND tanggal <= ?"""
                 cursor = conn.execute(get_deadline, [tanggal[0], tanggal[1]])
+
+        # # test untuk GET daftar deadlines N hari/minggu dari sekarang
+        # elif (findWord(message, "depan")):
+        #     if (n_hari):
+        #         # kasus terdapat filter task
+        #         if (tugas):
+        #             get_deadline = """SELECT strftime('%d/%m/%Y', tanggal) FROM tasks"""
+        #             cursor = conn.execute(get_deadline)
+        #             print(cursor.fetchall())
+            #     else: # tidak ada filter tugas
+            #         get_deadline = """SELECT * FROM tasks WHERE tanggal-strftime('%d-%m-%Y', 'now') <= ? AND tanggal >= date('now')"""
+            #         cursor = conn.execute(get_deadline, [n_hari[0]])
+
+            # elif (n_minggu):
+            #     # kasus terdapat filter task
+            #     if (tugas):
+            #         get_deadline = """SELECT * FROM tasks
+            #                         WHERE tugas = ? AND tanggal-strftime('%d-%m-%Y', 'now') <= ? AND tanggal >= date('now')"""
+            #         cursor = conn.execute(get_deadline, [tugas, n_minggu[0]*7])
+            #     else: # tidak ada filter tugas
+            #         get_deadline = """SELECT * FROM tasks WHERE tanggal-strftime('%d-%m-%Y', 'now') <= ? AND tanggal >= date('now')"""
+            #         cursor = conn.execute(get_deadline, [n_minggu[0]*7])
 
         # test untuk GET daftar deadlines hari ini
         elif (findWord(message, "hari ini")):
@@ -185,7 +206,7 @@ def chat_conditionals():
     # close connection to db
     conn.close()
 
-    return reccomendWord(message)
+    return "Maaf, pesan tidak dikenali"
 
 PORT = 5000
 if __name__ == "__main__":
