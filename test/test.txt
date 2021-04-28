@@ -1,0 +1,22 @@
+[Fitur]
+1. Menambahkan task baru
+2. Melihat daftar task
+3. Menampilkan deadline tugas
+4. Memperbaharui task tertentu
+5. Menandai selesai suatu task
+6. Opsi help
+
+[Daftar kata penting]
+1. Kuis
+2. Ujian
+3. Tucil
+4. Tubes
+5. Praktikum
+
+[Daftar kata untuk dicari lainnya]
+- Deadline
+- Semua
+- Sejauh
+- Depan
+- Hari ini
+- Tugas
