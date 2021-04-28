@@ -17,7 +17,7 @@
 
 .left-outer-icons {
   width: 3.3rem;
-  background: #202A43;
+  background: red;
   display: flex;
   flex-direction: column;
 }
