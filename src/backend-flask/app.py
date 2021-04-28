@@ -5,12 +5,7 @@ from database import *
 import sqlite3
 import json
 
-import os.path
-
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-db_path = os.path.join(BASE_DIR, "tasks.db")
-
-app = Flask("__main__")
+app = Flask("__name__")
 
 @app.route("/")
 def my_index():
@@ -19,11 +14,11 @@ def my_index():
 @app.route("/chat", methods=["POST"])
 def chat_conditionals():
     # connect to db
-    conn = create_connection(db_path)
+    conn = create_connection("tasks.db")
     cursor = conn.cursor()
 
     # get message
-    messages = request.get_json()["messages"]
+    messages = request.get_json()['messages']
     message = messages[len(messages)-1]
 
     # inisialisasi variabel awal
@@ -208,6 +203,6 @@ def chat_conditionals():
 
     return "Maaf, pesan tidak dikenali"
 
-PORT = 5000
+
 if __name__ == "__main__":
-    app.run(host="localhost", port=PORT, debug=True)
+    app.run()
