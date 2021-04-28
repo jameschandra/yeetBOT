@@ -3,6 +3,7 @@ import kmp
 
 def findWord(teks, pattern):
     kmptable = []
+    
     if(kmp.kmp(teks.lower(), pattern.lower(), kmptable) == -1):
         return False
     else:
@@ -10,11 +11,13 @@ def findWord(teks, pattern):
 
 def findMatkul(text):
     matkul = re.search('([a-zA-Z])+[0-9]+',text)
-    return matkul[0]
+    
+    return matkul
 
 def findTopik(text):
-    topik = re.search("\".*\"",text)
-    return topik[0]
+    topics = re.findall(r'"([^"]*)"', text)
+
+    return topics
 
 def findTask(kalimat):
     if (findWord(kalimat, "tubes")):
