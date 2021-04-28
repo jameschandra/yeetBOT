@@ -7,7 +7,7 @@ import axios from "axios";
 const App = () => {
   const [chat, setChat] = useState("");
   const [messages, setMessages] = useState([])
-  const [answered, setAnswered] = useState(false)
+  const [answered, setAnswered] = useState(true)
 
   const addMessage = () => {
     setMessages([...messages, chat]);
@@ -24,19 +24,17 @@ const App = () => {
 
   useEffect(() => { 
     if(!answered){
-      console.log(messages);
       axios
-      .post("http://localhost:3000/chat", {
-        message: messages,
-      })
-      .then((res) => {
-        setMessages([...messages,res.data])
-        console.log(res.data)
-      }).catch((e) => console.log(e))
+        .post("http://localhost:3000/chat", {
+          messages: messages,
+        })
+        .then((res) => {
+          setMessages([...messages, res.data])
+        })
+        .catch((e) => console.log(e))
       setAnswered(true);
-    }
-    }, 
-    [messages, answered]);
+    }}, 
+  [messages, answered]);
 
   return (
     <div className="App">

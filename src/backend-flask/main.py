@@ -23,31 +23,32 @@ def chat_conditionals():
     cursor = conn.cursor()
 
     # get message
-    message = request.get_json()["message"] 
+    messages = request.get_json()["messages"]
+    message = messages[len(messages)-1]
 
     # inisialisasi variabel awal
     tanggal = matkul = tugas = topik = id_num = n_hari = n_minggu = None
 
     # pencarian tanggal pada message
-    if (temp := findTanggal(message[len(message)-1])):
+    if (temp := findTanggal(message)):
         tanggal = temp
     # pencarian matkul pada message
-    if (temp := findMatkul(message[len(message)-1])):
+    if (temp := findMatkul(message)):
         matkul = temp
     # pencarian jenis tugas pada message
-    if (temp := findTask(message[len(message)-1])):
+    if (temp := findTask(message)):
         tugas = temp
     # pencarian topik pada message
-    if (temp := findTopik(message[len(message)-1])):
+    if (temp := findTopik(message)):
         topik = temp
     # pencarian ID setelah 'task' pada message
-    if (temp := findNumberAfterWord(message[len(message)-1], "task")):
+    if (temp := findNumberAfterWord(message, "task")):
         id_num = temp
     # pencarian N sebelum 'hari' pada message
-    if (temp := findNumberBeforeWord(message[len(message)-1], "hari")):
+    if (temp := findNumberBeforeWord(message, "hari")):
         n_hari = temp
     # pencarian N sebelum 'minggu' pada message
-    if (temp := findNumberBeforeWord(message[len(message)-1], "minggu")):
+    if (temp := findNumberBeforeWord(message, "minggu")):
         n_minggu = temp
 
     # test untuk POST tanggal, matkul, tugas dan topik
@@ -60,9 +61,9 @@ def chat_conditionals():
         return f"[TASK BERHASIL DICATAT]\n(ID: {cursor.lastrowid}) {tanggal[0]} - {matkul[0].upper()} - {tugas} - {topik[0]}"
     
     # test untuk GET (harus ada kata deadline)
-    elif (findWord(message[len(message)-1], "deadline")):
+    elif (findWord(message, "deadline")):
         # test untuk GET all daftar deadlines
-        if (findWord(message[len(message)-1], "semua") or findWord(message[len(message)-1], "sejauh")):
+        if (findWord(message, "semua") or findWord(message, "sejauh")):
             # kasus terdapat filter task
             if (tugas):
                 get_deadline = """SELECT * FROM tasks
@@ -85,7 +86,7 @@ def chat_conditionals():
                 cursor = conn.execute(get_deadline, [tanggal[0], tanggal[1]])
 
         # # test untuk GET daftar deadlines N hari/minggu dari sekarang
-        # elif (findWord(message[len(message)-1], "depan")):
+        # elif (findWord(message, "depan")):
         #     if (n_hari):
         #         # kasus terdapat filter task
         #         if (tugas):
@@ -107,7 +108,7 @@ def chat_conditionals():
             #         cursor = conn.execute(get_deadline, [n_minggu[0]*7])
 
         # test untuk GET daftar deadlines hari ini
-        elif (findWord(message[len(message)-1], "hari ini")):
+        elif (findWord(message, "hari ini")):
             # kasus terdapat filter task
             if (tugas):
                 get_deadline = """SELECT * FROM tasks
@@ -134,7 +135,7 @@ def chat_conditionals():
             return f"[Daftar Deadline]{retString}"
 
         # test untuk GET deadlines TUGAS matkul tertentu
-        if (findWord(message[len(message)-1], "tugas") and matkul):
+        if (findWord(message, "tugas") and matkul):
             get_deadline = """SELECT tanggal FROM tasks
                               WHERE (tugas = "Tubes" OR tugas = "Tucil") 
                               AND matkul = ?"""
@@ -154,7 +155,7 @@ def chat_conditionals():
             return retString
     
     # test untuk UPDATE (harus ada ID, undur/maju, tanggal)
-    elif (findWord(message[len(message)-1], "undur") or findWord(message[len(message)-1], "maju") or findWord(message[len(message)-1], "update")):
+    elif (findWord(message, "undur") or findWord(message, "maju") or findWord(message, "update")):
         if (tanggal and id_num):
             count_query = """SELECT COUNT(*) FROM tasks
                              WHERE id = ?"""
@@ -176,7 +177,7 @@ def chat_conditionals():
             return retString
 
     # test untuk DELETE (harus ada selesai, ID)
-    elif (findWord(message[len(message)-1], "selesai") or findWord(message[len(message)-1], "delete")):
+    elif (findWord(message, "selesai") or findWord(message, "delete")):
         if (id_num):
             count_query = """SELECT COUNT(*) FROM tasks
                              WHERE id = ?"""
@@ -198,8 +199,8 @@ def chat_conditionals():
             return retString
 
     # test untuk GET opsi helep
-    elif (findWord(message[len(message)-1], "apa") and findWord(message[len(message)-1], "lakukan")):
-        return f"[Fitur]\n1. Menambahkan task baru\n2. Melihat daftar task\n3. Menampilkan deadline tugas\n4. Memperbaharui task tertentu\n5. Menandai selesai suatu task\n6. Opsi help\n\n[Daftar kata penting]\n1. Kuis\n2. Ujian\n3. Tucil\n4. Tubes\n5. Praktikum\n"
+    elif (findWord(message, "apa") and (findWord(message, "lakukan") or findWord(message, "bisa"))):
+        return f"[Fitur]\n1. Menambahkan task baru\n2. Melihat daftar task\n3. Menampilkan deadline tugas\n4. Memperbaharui task tertentu\n5. Menandai selesai suatu task\n6. Opsi help\n\n[Daftar kata penting]\n1. Kuis\n2. Ujian\n3. Tucil\n4. Tubes\n5. Praktikum"
 
 
     # close connection to db
