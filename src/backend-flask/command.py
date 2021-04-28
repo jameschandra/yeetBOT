@@ -36,10 +36,6 @@ def findTask(kalimat):
         return "Ujian"
     elif (findWord(kalimat, "praktikum")):
         return "Praktikum"
-
-def findTanggal(kalimat):
-    tanggal = re.findall('(\d{2}-\d{2}-\d{4})|(\d{2}\/\d{2}\/\d{4})|(\d{1,2}\s[A-Z][a-z]+\s\d{4})',kalimat)
-    print(tanggal) 
 # if ("""ada TANGGAL, MATKUL, JENIS, TOPIK"""):
 #     # nambah task baru
 # elif ("""ada APA, DEADLINE, ((DATE1 & DATE2)/(N & (HARI/MINGGU) & DEPAN)/HARI INI)/[jenis task]"""):
@@ -55,4 +51,3 @@ def findTanggal(kalimat):
 # else:
 #     print("Maaf, pesan tidak dikenali")
 
-findTanggal("31 Januari 2021")
