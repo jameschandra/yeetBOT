@@ -1,0 +1,15 @@
+.native-box {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.native-message {
+    background: #C3F69D;
+    width: fit-content;
+    max-width: 80%;
+    border-radius: 1rem;
+    padding: 0.5rem 0.8rem;
+    font-size: 0.85rem;
+    word-wrap: break-word;
+}
