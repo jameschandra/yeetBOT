@@ -2,6 +2,7 @@ from flask import Flask, request, jsonify
 from command import *
 from tanggal import *
 from database import *
+from Levenshtein import *
 import sqlite3
 import json
 
@@ -206,7 +207,7 @@ def chat_conditionals():
     # close connection to db
     conn.close()
 
-    return "Maaf, pesan tidak dikenali"
+    return reccomendWord(message)
 
 PORT = 5000
 if __name__ == "__main__":
