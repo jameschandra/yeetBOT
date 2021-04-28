@@ -22,7 +22,7 @@ def chat_conditionals():
     message = request.get_json()["message"] 
 
     # inisialisasi variabel awal
-    tanggal = matkul = tugas = topik = None
+    tanggal = matkul = tugas = topik = id_num = n_hari = n_minggu = None
 
     # pencarian tanggal pada message
     if (temp := findTanggal(message)):
@@ -83,25 +83,25 @@ def chat_conditionals():
 
         # # test untuk GET daftar deadlines N hari/minggu dari sekarang
         # elif (findWord(message, "depan")):
-        #     if (n_hari[0]):
+        #     if (n_hari):
         #         # kasus terdapat filter task
         #         if (tugas):
-        #             get_deadline = """SELECT * FROM tasks
-        #                             WHERE tugas = ? AND julianday(tanggal) - julianday('now') <= ?"""
-        #             cursor = conn.execute(get_deadline, [tugas, n_hari[0]])
-        #         else: # tidak ada filter tugas
-        #             get_deadline = """SELECT * FROM tasks WHERE julianday(tanggal) - julianday('now') <= ?"""
-        #             cursor = conn.execute(get_deadline, [n_hari[0]])
+        #             get_deadline = """SELECT strftime('%d/%m/%Y', tanggal) FROM tasks"""
+        #             cursor = conn.execute(get_deadline)
+        #             print(cursor.fetchall())
+            #     else: # tidak ada filter tugas
+            #         get_deadline = """SELECT * FROM tasks WHERE tanggal-strftime('%d-%m-%Y', 'now') <= ? AND tanggal >= date('now')"""
+            #         cursor = conn.execute(get_deadline, [n_hari[0]])
 
-        #     elif (n_minggu[0]):
-        #         # kasus terdapat filter task
-        #         if (tugas):
-        #             get_deadline = """SELECT * FROM tasks
-        #                             WHERE tugas = ? AND julianday(tanggal) - julianday('now') <= ?"""
-        #             cursor = conn.execute(get_deadline, [tugas, n_minggu[0]*7])
-        #         else: # tidak ada filter tugas
-        #             get_deadline = """SELECT * FROM tasks WHERE julianday(tanggal) - julianday('now') <= ?"""
-        #             cursor = conn.execute(get_deadline, [n_minggu[0]*7])
+            # elif (n_minggu):
+            #     # kasus terdapat filter task
+            #     if (tugas):
+            #         get_deadline = """SELECT * FROM tasks
+            #                         WHERE tugas = ? AND tanggal-strftime('%d-%m-%Y', 'now') <= ? AND tanggal >= date('now')"""
+            #         cursor = conn.execute(get_deadline, [tugas, n_minggu[0]*7])
+            #     else: # tidak ada filter tugas
+            #         get_deadline = """SELECT * FROM tasks WHERE tanggal-strftime('%d-%m-%Y', 'now') <= ? AND tanggal >= date('now')"""
+            #         cursor = conn.execute(get_deadline, [n_minggu[0]*7])
 
         # test untuk GET daftar deadlines hari ini
         elif (findWord(message, "hari ini")):
@@ -188,7 +188,7 @@ def chat_conditionals():
 
             delete_entry = """DELETE FROM tasks
                               WHERE id = ?"""
-                              
+
             cursor = conn.execute(delete_entry, [id_num[0]])
             conn.commit()
 

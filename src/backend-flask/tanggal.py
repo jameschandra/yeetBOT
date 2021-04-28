@@ -43,9 +43,9 @@ def monthToNumber(bulan):
         return ""
 
 def findTanggal(kalimat):
-    format1 = re.compile("(0[1-9]|[12][0-9]|3[0-2])-(0[1-9]|[1][0-2])-(20[2-9][0-9])") #dd-mm-yy 21-05-2021
-    format2 = re.compile("(0[1-9]|[12][0-9]|3[0-2])/(0[1-9]|[1][0-2])/(20[2-9][0-9])") #dd/mm/yyyy 21/05/2021
-    format3 = re.compile("(0[1-9]|[12][0-9]|3[0-2])(\s)([a-zA-Z]{3,})\s(20[2-9][0-9])") #dd MMMM yyyy 21 Mei 2021
+    format1 = re.compile("(0[1-9]|[12][0-9]|3[0-1])-(0[1-9]|[1][0-2])-(\d+)") #dd-mm-yy 21-05-2021
+    format2 = re.compile("(0[1-9]|[12][0-9]|3[0-1])/(0[1-9]|[1][0-2])/(\d+)") #dd/mm/yyyy 21/05/2021
+    format3 = re.compile("(0[1-9]|[12][0-9]|3[0-1])(\s)([a-zA-Z]{3,})\s(\d+)") #dd MMMM yyyy 21 Mei 2021
     tanggal = []
     valid = format1.search(kalimat)
     while valid:
