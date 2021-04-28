@@ -1,5 +1,5 @@
 # yeetBOT
-> Here goes your awesome project description!
+> yeetBOT is your friendly scheduler bot jam-packed with awesome features and cool responses. Fork this repo and have a go for yourself!
 
 ## Table of contents
 * [General info](#general-info)
@@ -12,38 +12,56 @@
 * [Contact](#contact)
 
 ## General info
-Add more general information about project. What the purpose of the project is? Motivation?
+yeetBOT is our 2nd year undegrad project which covers the topic of string matching (from KMP algorithms, to regular expressions), the bot simply works with plain and simple regex, none of the fancy NLP stuff! Our user interface is also V E R Y original!
 
 ## Screenshots
-![Example screenshot](./img/screenshot.png)
+![Example screenshot](https://i.ibb.co/BNKYHQ7/Screenshot-2021-04-28-225223.jpg)
 
 ## Technologies
-* Tech 1 - version 1.0
-* Tech 2 - version 2.0
-* Tech 3 - version 3.0
+* atomicwrites==1.4.0
+* attrs==20.3.0
+* click==7.1.2
+* colorama==0.4.4
+* Flask==1.1.2
+* iniconfig==1.1.1
+* itsdangerous==1.1.0
+* Jinja2==2.11.3
+* MarkupSafe==1.1.1
+* packaging==20.9
+* pluggy==0.13.1
+* py==1.10.0
+* pyparsing==2.4.7
+* pytest==6.2.3
+* toml==0.10.2
+* Werkzeug==1.0.1
 
 ## Setup
-Describe how to install / setup your local environement / add link to demo version.
+### Backend
+* 1. install python and pip
+* 2. open cmd
+* 3. cd to src/backend-flask
+* 4. pip install -r ./requirements.txt
+* 5. py main.py
 
-## Code Examples
-Show examples of usage:
-`put-your-code-here`
+### Frontend
+* 1. install node.js
+* 2. cd to src/frontend-react
+* 3. npm install
+* 4. npm start
+
 
 ## Features
-List of features ready and TODOs for future development
-* Awesome feature 1
-* Awesome feature 2
-* Awesome feature 3
+Here are our awesome list of features!
+* Add a new task
+* Show tasks
+* Show assignment deadlines
+* Update tasks
+* Mark tasks as done
+* Help option!
 
-To-do list:
-* Wow improvement to be done 1
-* Wow improvement to be done 2
-
-## Status
-Project is: _in progress_, _finished_, _no longer continue_ and why?
 
 ## Inspiration
-Add here credits. Project inspired by..., based on...
+l i n e c o r p 
 
 ## Contact
 Created by [@raisvaza](https://www.github.com/raisvaza),[@jamesteguh](https://www.github.com/jamesteguh), and [@mdrfaza](https://www.github.com/mdrfaza) - feel free to contact me!
