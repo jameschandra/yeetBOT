@@ -1,5 +1,5 @@
 import sqlite3
-
+import os.path
 
 def create_connection(db_file):
     """ create a database connection to a SQLite database """
@@ -9,8 +9,9 @@ def create_connection(db_file):
     except Error as e:
         print(e)
     return conn
-
-conn = sqlite3.connect("tasks.db")
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+db_path = os.path.join(BASE_DIR, "tasks.db")
+conn = sqlite3.connect(db_path)
 
 cursor = conn.cursor()
 
