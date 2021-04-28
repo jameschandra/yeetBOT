@@ -188,7 +188,7 @@ def chat_conditionals():
 
             delete_entry = """DELETE FROM tasks
                               WHERE id = ?"""
-            print(id_num[0])
+                              
             cursor = conn.execute(delete_entry, [id_num[0]])
             conn.commit()
 
