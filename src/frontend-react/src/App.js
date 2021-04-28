@@ -2,10 +2,12 @@ import React, { useState, useEffect } from "react";
 import ChatListStack from './components/ChatListStack';
 import MessageArray from "./components/MessageArray";
 import './App.css';
+import axios from "axios";
 
 const App = () => {
   const [chat, setChat] = useState("");
   const [messages, setMessages] = useState([])
+  const [answered, setAnswered] = useState(false)
 
   const addMessage = () => {
     setMessages([...messages, chat]);
@@ -16,13 +18,25 @@ const App = () => {
     e.preventDefault();
     if (e.key === "Enter" && chat !== "") {
       addMessage();
+      setAnswered(false);
     }
   }
 
   useEffect(() => { 
-    console.log(messages);
+    if(!answered){
+      console.log(messages);
+      axios
+      .post("http://localhost:3000/chat", {
+        message: messages,
+      })
+      .then((res) => {
+        setMessages([...messages,res.data])
+        console.log(res.data)
+      }).catch((e) => console.log(e))
+      setAnswered(true);
+    }
     }, 
-    [messages]);
+    [messages, answered]);
 
   return (
     <div className="App">
