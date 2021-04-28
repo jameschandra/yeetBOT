@@ -25,7 +25,7 @@ const App = () => {
   useEffect(() => { 
     if(!answered){
       axios
-        .post("http://localhost:3000/chat", {
+        .post("https://jamesteguh.github.io/chat", {
           messages: messages,
         })
         .then((res) => {
