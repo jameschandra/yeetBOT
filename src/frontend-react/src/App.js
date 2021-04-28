@@ -25,7 +25,7 @@ const App = () => {
   useEffect(() => { 
     if(!answered){
       axios
-        .post("https://jamesteguh.github.io/chat", {
+        .post("https://yeetbot-backend-flask.herokuapp.com/chat", {
           messages: messages,
         })
         .then((res) => {
