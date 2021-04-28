@@ -5,8 +5,8 @@ const MessageResponse = ({ message }) => {
     return (
         <div className="response-box">
             <p className="response-message">
-            {message.split("\n").map((i,key) => {
-                return <span>{i}{<br />}</span>
+            {message.split("\n").map((i, key) => {
+                return <span key={key}>{i}{<br />}</span>
             })}</p>
         </div>
     )
