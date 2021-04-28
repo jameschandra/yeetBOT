@@ -50,18 +50,18 @@ def findTanggal(kalimat):
     valid = format1.search(kalimat)
     while valid:
         tanggal.append(valid.group().replace('-','/'))
-        kalimat = kalimat.replace(valid.group(), '')
+        kalimat = kalimat.replace(valid.group(), '', 1)
         valid = format1.search(kalimat)
     valid = format2.search(kalimat)
     while valid:
         tanggal.append(valid.group())
-        kalimat = kalimat.replace(valid.group(), '')
+        kalimat = kalimat.replace(valid.group(), '', 1)
         valid = format2.search(kalimat)
     valid = format3.search(kalimat)
     while valid:
         bulan = re.search("\s\w{3,}\s", valid.group())
         bulan = bulan.group().strip()
         tanggal.append(valid.group().replace(' ', '/').replace(bulan, monthToNumber(bulan)))
-        kalimat = kalimat.replace(valid.group(), '')
+        kalimat = kalimat.replace(valid.group(), '', 1)
         valid = format3.search(kalimat)
     return tanggal
