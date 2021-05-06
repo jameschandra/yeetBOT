@@ -208,3 +208,6 @@ def chat_conditionals():
     conn.close()
 
     return reccomendWord(message)
+
+if __name__ == "__main__":
+    app.run()
