@@ -39,7 +39,6 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "https://yeetbot-backend-flask.herokuapp.com/",
   "devDependencies": {
     "gh-pages": "^3.1.0"
   }
