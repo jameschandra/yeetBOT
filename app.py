@@ -1,4 +1,5 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 from command import *
 from tanggal import *
 from database import *
@@ -12,6 +13,7 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 db_path = os.path.join(BASE_DIR, "tasks.db")
 
 app = Flask("__name__")
+CORS(app)
 
 @app.route("/")
 def my_index():
