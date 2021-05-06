@@ -11,7 +11,7 @@ import os.path
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 db_path = os.path.join(BASE_DIR, "tasks.db")
 
-app = Flask("__main__")
+app = Flask("__name__")
 
 @app.route("/")
 def my_index():
