@@ -15,7 +15,7 @@ app = Flask("__main__")
 
 @app.route("/")
 def my_index():
-    return "Hello world!"
+    return "Hello world! 1"
 
 @app.route("/chat", methods=["POST"])
 def chat_conditionals():
@@ -208,7 +208,3 @@ def chat_conditionals():
     conn.close()
 
     return reccomendWord(message)
-
-PORT = 5000
-if __name__ == "__main__":
-    app.run(host="localhost", port=PORT, debug=True)
