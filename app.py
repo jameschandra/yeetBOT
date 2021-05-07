@@ -149,7 +149,7 @@ def chat_conditionals():
 
         for i in range(len(results)):
             retString += f"{results[i][0]}"
-            if (i < len(results)):
+            if (i < len(results) - 1):
                 retString += "\n"
 
         if (not(retString)):
